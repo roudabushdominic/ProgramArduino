@@ -12,6 +12,8 @@
 
   https://www.arduino.cc/en/Tutorial/BuiltInExamples/Fade
 */
+//Programmer: Dominic Roudabush
+//Date:2/24/2022
 
 int led = 9;           // the PWM pin the LED is attached to
 int brightness = 0;    // how bright the LED is
