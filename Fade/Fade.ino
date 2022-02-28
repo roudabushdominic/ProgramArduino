@@ -15,7 +15,8 @@
 //Programmer: Dominic Roudabush
 //Date:2/24/2022
 
-int led = 9;           // the PWM pin the LED is attached to
+int led = 9;            // the PWM pin the LED is attached to
+int ledEleven=11;         // the PWM pin the LED is attached to
 int brightness = 0;    // how bright the LED is
 int fadeAmount = 5;    // how many points to fade the LED by
 
@@ -23,12 +24,16 @@ int fadeAmount = 5;    // how many points to fade the LED by
 void setup() {
   // declare pin 9 to be an output:
   pinMode(led, OUTPUT);
+  // declare pin 8 to be an output:
+  pinMode(ledEleven, OUTPUT);
 }
 
 // the loop routine runs over and over again forever:
 void loop() {
   // set the brightness of pin 9:
   analogWrite(led, brightness);
+    // set the brightness of pin 8:
+  analogWrite(ledEleven, brightness);
 
   // change the brightness for next time through the loop:
   brightness = brightness + fadeAmount;
