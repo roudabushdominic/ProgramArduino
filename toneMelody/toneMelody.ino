@@ -14,6 +14,8 @@
 
   https://www.arduino.cc/en/Tutorial/BuiltInExamples/toneMelody
 */
+//Programmer: Dominic Roudabush
+//Date: 3/2/2022
 
 #include "pitches.h"
 
