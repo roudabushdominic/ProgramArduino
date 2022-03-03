@@ -40,7 +40,7 @@ const int aH = 880;
  
 const int buzzerPin = 8;
 const int ledPin1 = 9;
-const int ledPin2 = 6;
+const int ledPin2 = 11;
  
 int counter = 0;
  
