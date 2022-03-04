@@ -1,6 +1,6 @@
 //programmer: Dominic Roudabush
 //date: 3/3/2022
-//resource: https://create.arduino.cc/projecthub/knackminds/how-to-measure-distance-using-ultrasonic-sensor-hc-sr04-a-b9f7f8
+//resource: https://www.etechnophiles.com/5-arduino-ultrasonic-sensor-projects-with-code-circuit-diagram-and-more/
 
 /*
 const int out=12;
