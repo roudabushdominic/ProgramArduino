@@ -2,34 +2,6 @@
 //date: 3/3/2022
 //resource: https://www.etechnophiles.com/5-arduino-ultrasonic-sensor-projects-with-code-circuit-diagram-and-more/
 
-/*
-const int out=12;
-const int in=13;
-void setup(){
-Serial.begin(9600);
-pinMode(in, INPUT);
-pinMode(out, OUTPUT);
-}
-void loop()
-{
-long dur;
-long dis;
-long tocm;
-digitalWrite(out,LOW);
-delayMicroseconds(2);
-digitalWrite(out,HIGH);
-delayMicroseconds(10);
-digitalWrite(out,LOW);
-dur=pulseIn(in,HIGH);
-tocm=microsecondsToCentimeters(dur);
-Serial.println(String(tocm));
-delay(100);
-}
-long microsecondsToCentimeters(long microseconds)
-{
-return microseconds / 29 / 2;
-}
-*/
 
 // ---------------------------------------------------------------- //
 // Arduino Ultrasoninc Sensor HC-SR04
@@ -39,12 +11,23 @@ return microseconds / 29 / 2;
 // Tested on 17 September 2019
 // ---------------------------------------------------------------- //
 
-#define echoPin 2 // attach pin D2 Arduino to pin Echo of HC-SR04
-#define trigPin 3 //attach pin D3 Arduino to pin Trig of HC-SR04
+// ---------------------------------------------------------------- //
+// Arduino Ultrasoninc Sensor HC-SR04 with LCD 16x2
+// Re-writed by Arbi Abdul Jabbaar
+// Using Arduino IDE 1.8.7
+// Using HC-SR04 Module
+// Tested on 17 September 2019
+// ---------------------------------------------------------------- //
+#include <LiquidCrystal.h>
+LiquidCrystal lcd(6, 7, 8, 9, 10, 11); // RS, EN, D4, D5, D6, D7
+
+#define echoPin 12 // attach pin D12 Arduino to pin Echo of HC-SR04
+#define trigPin 13 //attach pin D13 Arduino to pin Trig of HC-SR04
 
 // defines variables
 long duration; // variable for the duration of sound wave travel
-int distance; // variable for the distance measurement
+int distance_cm; // variable for centimeters measurement
+int distance_inch; // variable for inches measurement
 
 void setup() {
   pinMode(trigPin, OUTPUT); // Sets the trigPin as an OUTPUT
@@ -52,6 +35,7 @@ void setup() {
   Serial.begin(9600); // // Serial Communication is starting with 9600 of baudrate speed
   Serial.println("Ultrasonic Sensor HC-SR04 Test"); // print some text in Serial Monitor
   Serial.println("with Arduino UNO R3");
+  lcd.begin(16, 2); // lcd starts with resolution 16x2
 }
 void loop() {
   // Clears the trigPin condition
@@ -64,9 +48,15 @@ void loop() {
   // Reads the echoPin, returns the sound wave travel time in microseconds
   duration = pulseIn(echoPin, HIGH);
   // Calculating the distance
-  distance = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
+  distance_cm = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
+  distance_inch = duration * 0.0133 / 2; // Speed of sound wave divided by 2 (go and back)
   // Displays the distance on the Serial Monitor
-  Serial.print("Distance: ");
-  Serial.print(distance);
-  Serial.println(" cm");
+  lcd.setCursor(0, 0);
+  lcd.print("Distance: ");
+  lcd.print(distance_cm);
+  lcd.println(" cm");
+  lcd.setCursor(0, 1);
+  lcd.print("Distance: ");
+  lcd.print(distance_inch);
+  lcd.println(" inch");
 }
